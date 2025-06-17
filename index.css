@@ -6,6 +6,10 @@ html,body{
   color: #111;
 }
 
+figure {
+  margin: 0;
+}
+
 /* Mobile Small: No Borders, No Artbox */
 body::before,
 body::after{
@@ -53,7 +57,36 @@ body::after {
   font-size: 1.72rem; 
 }
 
-#artbox{ display: none; }
+#artbox{
+  display: none;
+  background: rgba(255,255,255,0.85);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+#art-frame{
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  position: relative;
+}
+
+.roll-img{
+  display: block;
+  position:absolute;
+  inset:0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 4px;
+  background-color: #d4d4d4;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
 
 #subContainer{
   flex: 1;
@@ -105,46 +138,12 @@ body::after {
 
 /* Mobile Large: No Borders, Yes Artbox */
 @media(min-width:350px) and (min-height:770px){
-  body::before,
-  body::after{
-    content: none;
-    width: 0;
-  }
-
-  #container{
-    min-width: 100dvw;
-    max-width: 100dvw;
-    min-height: 100dvh;
-    max-height: 100dvh;
-  }
-
-  #artbox{
-    display: block;
-    background: rgba(255,255,255,0.85);
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-  }
-
-  #roll-img{
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-    border-radius: 4px;
-    background-color: #d4d4d4;
-  }
-
+  #artbox{ display: block; }
   #entry { margin-top: 0dvh; }
 }
 
 /* Desktop Small: Yes Borders, No Artbox */
-@media(min-width:480px) and (max-height:769px){
+@media(min-width:480px) {
   :root{ --content-max: 480px; }
 
   body::before,
@@ -168,49 +167,12 @@ body::after {
 
 /* Desktop Medium: Yes Borders, Yes Artbox */
 @media(min-width:480px) and (min-height:770px){
-  :root{ --content-max: 480px; }
-
-  body::before,
-  body::after{
-    content: "";
-    width: max(0px, calc((100vw - var(--content-max)) / 2));
-  }
-
-  #container{ 
-    min-width: 0px;
-    max-width: 480px;
-    padding: 0 2rem;
-  }
-  #page-head h1{ font-size: 1.81rem; }
-
-  #artbox{
-    display: block;
-    background: rgba(255,255,255,0.85);
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-  }
-
-  #roll-img{
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-    border-radius: 4px;
-    background-color: #d4d4d4;
-  }
-
-  #entry{ font-size: 1em; margin-top: 0dvh; }
-  #reroll{ width: 12dvh; }
+  #artbox{ display: block; }
+  #entry{ margin-top: 0dvh; }
 }
 
 /* Desktop Large: Yes Borders, No Artbox */
-@media(min-width:720px) and (max-height:879px){
+@media(min-width:720px) {
   :root{ --content-max: 720px; }
 
   body::before,
@@ -234,49 +196,12 @@ body::after {
 
 /* Desktop Large: Yes Borders, Yes Artbox */
 @media(min-width:720px) and (min-height:880px){
-  :root{ --content-max: 720px; }
-
-  body::before,
-  body::after{
-    content: "";
-    width: max(0px, calc((100vw - var(--content-max)) / 2));
-  }
-
-  #container{ 
-    min-width: 0px;
-    max-width: 720px;
-    padding: 0 2rem;
-  }
-  #page-head h1{ font-size: 1.9rem; }
-
-  #artbox{
-    display: block;
-    background: rgba(255,255,255,0.85);
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-  }
-
-  #roll-img{
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-    border-radius: 4px;
-    background-color: #d4d4d4;
-  }
-
-  #entry{ font-size: 1.05em; margin-top: 0dvh; }
-  #reroll{ width: 14dvh; }
+  #artbox{ display: block; }
+  #entry{ margin-top: 0dvh; }
 }
 
 /* Desktop Extra Large: Yes Borders, No Artbox */
-@media(min-width:1080px) and (max-height:1079px){
+@media(min-width:1080px) {
   :root{ --content-max: 1080px; }
 
   body::before,
@@ -300,43 +225,6 @@ body::after {
 
 /* Desktop Extra Large: Yes Borders, Yes Artbox */
 @media(min-width:1080px) and (min-height:1080px){
-  :root{ --content-max: 1080px; }
-
-  body::before,
-  body::after{
-    content: "";
-    width: max(0px, calc((100vw - var(--content-max)) / 2));
-  }
-
-  #container{ 
-    min-width: 0px;
-    max-width: 1080px;
-    padding: 0 2rem;
-  }
-  #page-head h1{ font-size: 2rem; }
-
-  #artbox{
-    display: block;
-    background: rgba(255,255,255,0.85);
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-  }
-
-  #roll-img{
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-    border-radius: 4px;
-    background-color: #d4d4d4;
-  }
-
-  #entry{ font-size: 1.1em; margin-top: 0dvh; }
-  #reroll{ width: 16dvh; }
+  #artbox{ display: block; }
+  #entry{ margin-top: 0dvh; }
 }

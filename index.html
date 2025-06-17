@@ -4,15 +4,27 @@
   <head>
     <meta charset="utf-8">
     <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Sundered Weave: Magic Surge Table</title>
-    <link rel="icon" href="/resources/favicon.png">
+    <title>Kali's Wild Magic Surge Table</title>
+    <link rel="icon" href="/resources/ui/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="index.css">
   </head>
   <body>
     <div id="container">
-      <div id="entry"></div>
+      <header id="page-head">
+        <h1>The Sundered Weave</h1>
+      </header>
+      <figure id="artbox">
+        <img id="roll-img" src="/resources/ui/placeholder.png"
+            alt="Roll Illustration"/>
+      </figure>
+      <div id="subContainer">
+        <div id="entry"><strong>0</strong> — In the beginning were the Words, and the Words made the world. I am the Words. The Words are everything. Where the Words end the world ends. You cannot go forward in an absence of space. Repeat.</div>
+        <img id="reroll" src="/resources/ui/dice.png" alt="Roll the d20 for a new surge"/>
+      </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="genTable.js" defer></script>
+    <script type="text/javascript" src="diceSounds.js" defer></script>
+    <script type="text/javascript" src="diceHandler.js" defer></script>
   </body>
 </html>

@@ -126,15 +126,18 @@ body::after {
     padding: 1.5rem;
     margin-bottom: 1rem;
     width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
   }
 
   #roll-img{
     display: block;
     width: 100%;
-    height: auto;
-    aspect-ratio: 16/9;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
     border-radius: 4px;
+    background-color: #d4d4d4;
   }
 
   #entry { margin-top: 0dvh; }
@@ -188,15 +191,18 @@ body::after {
     padding: 1.5rem;
     margin-bottom: 1rem;
     width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
   }
 
   #roll-img{
     display: block;
     width: 100%;
-    height: auto;
-    aspect-ratio: 16/9;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
     border-radius: 4px;
+    background-color: #d4d4d4;
   }
 
   #entry{ font-size: 1em; margin-top: 0dvh; }
@@ -251,15 +257,18 @@ body::after {
     padding: 1.5rem;
     margin-bottom: 1rem;
     width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
   }
 
   #roll-img{
     display: block;
     width: 100%;
-    height: auto;
-    aspect-ratio: 16/9;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
     border-radius: 4px;
+    background-color: #d4d4d4;
   }
 
   #entry{ font-size: 1.05em; margin-top: 0dvh; }
@@ -314,15 +323,18 @@ body::after {
     padding: 1.5rem;
     margin-bottom: 1rem;
     width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
   }
 
   #roll-img{
     display: block;
     width: 100%;
-    height: auto;
-    aspect-ratio: 16/9;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
     border-radius: 4px;
+    background-color: #d4d4d4;
   }
 
   #entry{ font-size: 1.1em; margin-top: 0dvh; }

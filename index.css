@@ -10,7 +10,6 @@ figure {
   margin: 0;
 }
 
-/* Mobile Small: No Borders, No Artbox */
 body::before,
 body::after{
   content: none;
@@ -35,7 +34,7 @@ body::after {
 }
 
 #container{
-  min-width: 100dvw;
+  min-width: 350px;
   max-width: 100dvw;
   min-height: 100dvh;
   max-height: 100dvh;
@@ -133,6 +132,11 @@ body::after {
   33%  { transform: scale(0.90) rotate(120deg); }
   66%  { transform: scale(0.90) rotate(240deg); }
   100% { transform: scale(0.90) rotate(360deg); }
+}
+
+/* Mobile Small: No Borders, No Artbox, No Dice */
+@media(max-width:479px) and (max-height:450px){
+  #reroll{ display: none; }
 }
 
 /* Mobile Large: No Borders, Yes Artbox */

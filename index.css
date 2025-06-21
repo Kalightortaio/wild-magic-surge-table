@@ -104,7 +104,6 @@ body::after {
   line-height: 1.45;
   font-size: 0.95em;
   word-wrap: break-word;
-  margin-top: 10dvh;
 }
 
 #reroll{
@@ -137,94 +136,63 @@ body::after {
 }
 
 /* Mobile Large: No Borders, Yes Artbox */
-@media(min-width:350px) and (min-height:770px){
+@media(max-width:479px) and (min-height:770px){
   #artbox{ display: block; }
-  #entry { margin-top: 0dvh; }
 }
 
-/* Desktop Small: Yes Borders, No Artbox */
-@media(min-width:480px) {
+/* Desktop Medium: Yes Borders, Yes Artbox */
+@media(min-width:480px) and (min-height:800px){
   :root{ --content-max: 480px; }
-
   body::before,
   body::after{
     content: "";
     width: max(0px, calc((100vw - var(--content-max)) / 2));
   }
-
   #container{ 
     min-width: 0px;
     max-width: 480px;
     padding: 0 2rem;
   }
   #page-head h1{ font-size: 1.81rem; }
-
-  #artbox{ display: none; }
-
-  #entry{ font-size: 1em; margin-top: 12dvh; }
+  #artbox{ display: block; }
+  #entry{ font-size: 1em; }
   #reroll{ width: 12dvh; }
 }
 
-/* Desktop Medium: Yes Borders, Yes Artbox */
-@media(min-width:480px) and (min-height:770px){
-  #artbox{ display: block; }
-  #entry{ margin-top: 0dvh; }
-}
-
-/* Desktop Large: Yes Borders, No Artbox */
-@media(min-width:720px) {
+/* Desktop Large: Yes Borders, Yes Artbox */
+@media(min-width:720px) and (min-height:910px){
   :root{ --content-max: 720px; }
-
   body::before,
   body::after{
     content: "";
     width: max(0px, calc((100vw - var(--content-max)) / 2));
   }
-
   #container{ 
     min-width: 0px;
     max-width: 720px;
     padding: 0 2rem;
   }
   #page-head h1{ font-size: 1.9rem; }
-
-  #artbox{ display: none; }
-
-  #entry{ font-size: 1.05em; margin-top: 14dvh; }
+  #artbox{ display: block; }
+  #entry{ font-size: 1.05em; }
   #reroll{ width: 14dvh; }
 }
 
-/* Desktop Large: Yes Borders, Yes Artbox */
-@media(min-width:720px) and (min-height:880px){
-  #artbox{ display: block; }
-  #entry{ margin-top: 0dvh; }
-}
-
-/* Desktop Extra Large: Yes Borders, No Artbox */
-@media(min-width:1080px) {
+/* Desktop Extra Large: Yes Borders, Yes Artbox */
+@media(min-width:1080px) and (min-height:1160px){
   :root{ --content-max: 1080px; }
-
   body::before,
   body::after{
     content: "";
     width: max(0px, calc((100vw - var(--content-max)) / 2));
   }
-
-  #container{ 
+  #container{
     min-width: 0px;
     max-width: 1080px;
     padding: 0 2rem;
   }
   #page-head h1{ font-size: 2rem; }
-
-  #artbox{ display: none; }
-
-  #entry{ font-size: 1.1em; margin-top: 16dvh; }
-  #reroll{ width: 16dvh; }
-}
-
-/* Desktop Extra Large: Yes Borders, Yes Artbox */
-@media(min-width:1080px) and (min-height:1080px){
   #artbox{ display: block; }
-  #entry{ margin-top: 0dvh; }
+  #entry{ font-size: 1.1em; }
+  #reroll{ width: 16dvh; }
 }

@@ -1,20 +1,17 @@
 const SHEET_HTML_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQTgzBVIVNvzDAE9I7BmVg7sbCANY7Yr-KYsr-pY5zf_xEYLL-qYHGebadNYv4GG22JaRGimGDCYhlO/pubhtml?gid=0&single=true&widget=false&chrome=false";
 
 let dataRows = [];
-const MAX_RECENT_ROLLS = 2;
-const recentRolls = [];
 
 async function loadData () {
   const html = await fetch(SHEET_HTML_URL).then(r => r.text());
-
   const temp = document.createElement("div");
   temp.innerHTML = html;
 
   const rows = temp.querySelectorAll("table.waffle tbody tr");
 
   dataRows = Array.from(rows).filter(r => {
-    const firstTd = r.querySelector("td");
-    return firstTd && /^\d+$/.test(firstTd.textContent.trim());
+    const td = r.querySelector("td");
+    return td && /^\d+$/.test(td.textContent.trim());
   });
 }
 
@@ -45,22 +42,10 @@ function swapImage(src){
   frame.appendChild(fresh);
 }
 
-function pickRoll () {
-  const candidates = dataRows.map(r => Number(r.firstChild.textContent.trim()));
-  const pool = candidates.filter(n => !recentRolls.includes(n));
-  const roll =
-        pool.length
-        ? pool[Math.floor(Math.random() * pool.length)]
-        : candidates[Math.floor(Math.random() * candidates.length)];
-  recentRolls.push(roll);
-  if (recentRolls.length > MAX_RECENT_ROLLS) recentRolls.shift();
-  return roll;
-}
-
 function showRoll () {
   if (!dataRows.length) return;
 
-  const row =  dataRows[pickRoll()];
+  const row =  dataRows[Math.floor(Math.random() * dataRows.length)];
   const tds = row.querySelectorAll("td");
 
   const roll   = tds[0].innerHTML.trim();
@@ -69,17 +54,12 @@ function showRoll () {
   document.getElementById("entry").innerHTML =
     `<strong>${roll}</strong> — ${effect}`;
 
-  const img   = document.getElementById("roll-img");
-  const path  = imageForRoll(roll);
-
   swapImage(imageForRoll(roll));
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
   await loadData();
   showRoll();
-
-  document.getElementById("reroll").addEventListener("click", showRoll);
 });
 
 const dice = document.getElementById("reroll");

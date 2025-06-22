@@ -59,7 +59,7 @@ body::after {
 
 #pageHead h1 { 
   font-weight: 700;
-  font-size: 1.72rem;
+  font-size: 1.1rem;
 }
 
 #pageHead img {
@@ -71,7 +71,7 @@ body::after {
 }
 
 :root { 
-  --header-h: 147.875px;
+  --header-h: 95.96px;
 }
 
 #searchModal {
@@ -248,24 +248,45 @@ body::after {
   100% { transform: scale(0.90) rotate(360deg); }
 }
 
-/* Mobile Wide: No borders, No artBox */
-@media(min-width:380px) {
-  :root { --header-h: 110.875px; }
+@media(min-width:368px) {
+  :root { --header-h: 71.5625px; }
 }
 
-/* Mobile Wide: No borders, No artBox */
+@media(min-width:432px) {
+  :root { --header-h: 53px; }
+}
+
 @media(min-width:480px) {
   :root { --header-h: 73.875px; }
 }
 
-/* Mobile Small: No Borders, No artBox, No Dice */
-@media(max-width:479px) and (max-height:450px) {
+/* Mobile Small: No Borders, No artBox, Yes Dice */
+@media(max-width:479px) and (max-height:684px) {
+  #reroll { display: block; }
+}
+
+/* Mobile Small: No Borders, Yes artBox, No Dice */
+@media(max-width:479px) and (min-height:685px) {
+  #artBox { display: block; }
   #reroll { display: none; }
 }
 
-/* Mobile Large: No Borders, Yes artBox */
-@media(max-width:479px) and (min-height:770px) {
-  #artBox { display: block; }
+@media(min-height:770px) {
+  #reroll { display: flex; }
+}
+
+/* Desktop Small Wide: No Borders, No artBox */
+@media(min-width:480px) and (max-height:799px) {
+  :root { --header-h: 53.56px; }
+  #pageHead h1 { font-size: 1.24rem; }
+  #entry { margin: auto 0; }
+}
+
+/* Desktop Small Wide: No Borders, No artBox */
+@media(min-width:540px) and (max-height:799px) {
+  :root { --header-h: 73.875px; }
+  #pageHead h1 { font-size: 1.72rem; }
+  #entry { margin: auto 0; }
 }
 
 /* Desktop Medium: Yes Borders, Yes artBox */

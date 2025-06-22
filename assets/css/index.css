@@ -102,6 +102,10 @@ body::after {
   display: none;
 }
 
+#searchModal.info{
+  overflow-y:auto;
+}
+
 #searchModal.info .info {
   display: block;
   font-family: "Noto Serif", serif;

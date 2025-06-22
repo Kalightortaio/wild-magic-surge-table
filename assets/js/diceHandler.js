@@ -15,16 +15,16 @@ async function loadData () {
   });
 }
 
-function imageForRoll(num){
+function imageForRoll(num) {
   return `/resources/artbox/roll_${num}.png`;
 }
 
-function swapImage(src){
-  const frame = document.getElementById("art-frame");
-  const old   = frame.querySelector(".roll-img");
+function swapImage(src) {
+  const frame = document.getElementById("artFrame");
+  const old   = frame.querySelector(".rollImg");
 
   const fresh = document.createElement("img");
-  fresh.className = "roll-img";
+  fresh.className = "rollImg";
   fresh.src       = src;
   fresh.onerror   = () => { fresh.src = "/resources/ui/placeholder.png"; };
 
@@ -34,7 +34,7 @@ function swapImage(src){
   };
 
   fresh.addEventListener("transitionend", () => {
-    if (old && old.parentNode){
+    if (old && old.parentNode) {
       old.parentNode.removeChild(old);
     }
   });

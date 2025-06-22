@@ -75,6 +75,7 @@ body::after {
 }
 
 #searchModal {
+  display: none;
   position: absolute;
   width: calc(100% - 2rem);
   height: calc(100dvh - var(--header-h) - 1rem);
@@ -85,8 +86,27 @@ body::after {
   padding: 1.5rem;
   row-gap: 1.5rem;
   z-index: 2;
-  display: flex;
   flex-direction: column;
+}
+
+#searchModal.show {
+  display: flex;
+}
+
+#searchModal.info #searchBox,
+#searchModal.info #searchResults {
+  display: none;
+}
+
+#searchModal .info {
+  display: none;
+}
+
+#searchModal.info .info {
+  display: block;
+  font-family: "Noto Serif", serif;
+  color: #111;
+  margin: 0;
 }
 
 #searchBox {
@@ -120,14 +140,27 @@ body::after {
 #searchResults li:hover,
 #searchResults li.active { background:#eee; }
 
-#gDrive {
+#gdrive {
   max-height: 48px;
   margin-right: 32px;
 }
 
-#search {
+#headerRight {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#info {
   max-height: 42px;
   margin-left: 32px;
+}
+
+#search {
+  max-height: 42px;
+  margin-left: 16px;
 }
 
 #artBox {
@@ -194,7 +227,9 @@ body::after {
 
 @media(hover:hover) and (pointer:fine) {
   #reroll:hover { filter: brightness(1.3); }
-  #pageHead img:hover { filter: brightness(1.1); }
+  #gdrive:hover { filter: brightness(1.1); }
+  #search:hover { filter: brightness(1.1); }
+  #info:hover { filter: brightness(10); }
 }
 
 #reroll.rolling {

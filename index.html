@@ -13,14 +13,23 @@
     <div id="container">
       <header id="pageHead">
         <a href="https://docs.google.com/spreadsheets/d/1K_F1QXq3ZoFb93N45-XnjSvlXx7ikjiG7voBfyAqQhI/edit?usp=sharing" target="_blank">
-          <img id="gDrive" src="/resources/ui/gdrive.png" alt="GSheets button"/>
+          <img id="gdrive" src="/resources/ui/gdrive.png" alt="Google Drive button"/>
         </a>
         <h1>The Sundered Weave</h1>
-        <img id="search" src="/resources/ui/search.png" alt="Search button"/>
+        <div id="headerRight">
+          <img id="info" src="/resources/ui/info.png" alt="Info button"/>
+          <img id="search" src="/resources/ui/search.png" alt="Search button"/>
+        </div>
       </header>
-      <div id="searchModal" style="visibility: hidden;">
+      <div id="searchModal">
+        <h2 class="info">Frequently Asked Questions</h2>
+        <h3 class="info">A surge contains the text "the target of your spell," but the spell was not a single-target spell. What happens?</h3>
+        <p class="info">Multi-Target Spells: The surge affects the first target affected by the spell.</p>
+        <p class="info">Range of Self Spells: The target is yourself.</p>
+        <p class="info">Summoning Spells: The target is the creature you summon.</p>
+        <p class="info">Area-of-Effect (AoE) Spells: The target is the first creature encountered from the spell's point of origin. If no creature exists, the point of origin itself is considered the target.</p>
         <input id="searchBox" type="text" placeholder="Find surge…">
-        <ul id="searchResults" tabindex="-1"></ul> 
+        <ul id="searchResults" tabindex="-1"></ul>
       </div>
       <figure id="artBox">
         <div id="artFrame">

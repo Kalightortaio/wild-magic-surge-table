@@ -1,6 +1,14 @@
+const info = document.getElementById("info");
 const search = document.getElementById("search");
 const modal = document.getElementById("searchModal");
 const searchBox = document.getElementById("searchBox");
+
+const isOpen  = () =>  modal.classList.contains("show");
+const isInfo  = () =>  modal.classList.contains("info");
+const open    = () =>  modal.classList.add("show");
+const close   = () =>  modal.classList.remove("show", "info");
+const setInfo = () =>  modal.classList.add("info");
+const clrInfo = () =>  modal.classList.remove("info");
 
 let surgeCache = [];
 let minRoll = 0;
@@ -51,7 +59,7 @@ function showSuggestions(list) {
     li.textContent = `${s.roll} — ${s.text.slice(0,140)}…`;
     li.addEventListener("click", ()=> {
       loadSurge(s);
-      modal.style.visibility = "hidden";
+      close();
     });
     ul.appendChild(li);
   });
@@ -76,19 +84,44 @@ searchBox.addEventListener("input", e=> {
   showSuggestions( filterSurges(e.target.value) );
 });
 
-search.addEventListener("click", () => {
-  modal.style.visibility = modal.style.visibility === "hidden" ? "visible" : "hidden";
+info.addEventListener("click", () => {
+  if (!isOpen()) {
+    setInfo();
+    open();
+    return;
+  }
+  if (isInfo()) {
+    close();
+  } else {
+    setInfo();
+  }
 });
 
+search.addEventListener("click", () => {
+  if (!isOpen()) {
+    clrInfo();
+    open();
+    return;
+  }
+  if (isInfo()) {
+    clrInfo();
+  } else {
+    close();
+  }
+});
+
+info.addEventListener("contextmenu", e => e.preventDefault());
 search.addEventListener("contextmenu", e => e.preventDefault());
 
-window.addEventListener("keydown", e=> {
-  if(e.key==="Escape") modal.style.visibility = "hidden";
-});
-
-window.addEventListener("keydown", e=> {
-  if (e.ctrlKey && e.key === "f") { 
+window.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    close();
+    return;
+  }
+  if (e.ctrlKey && e.key === "f") {
     e.preventDefault();
-    modal.style.visibility = "visible";
+    clrInfo();
+    open();
+    searchBox.focus();
   }
 });

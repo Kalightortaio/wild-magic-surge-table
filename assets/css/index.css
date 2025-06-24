@@ -4,16 +4,28 @@ html,body {
   margin: 0;
   font-family: "Noto Serif", serif;
   color: #111;
+  min-width: 360px;
+  height: 100%;
+  overflow: hidden;
 }
 
 figure {
   margin: 0;
 }
 
+:root { 
+  --content-max: 360px;
+  --border-width: 1rem;
+  --header-h: 85.88px;
+  --smart-width: calc(var(--content-max) - (2 * var(--border-width)));
+  --smart-height: calc(100dvh - var(--header-h) - var(--border-width));
+  --border-image-offset: calc((100dvw - var(--content-max)) / 2);
+}
+
 body::before,
 body::after {
-  content: none;
-  width: 0;
+  content: "";
+  width: var(--border-image-offset);
   position: fixed;
   top: 0; 
   bottom: 0;
@@ -36,20 +48,19 @@ body::after {
 #container {
   position: relative;
   min-width: 350px;
-  max-width: 100dvw;
-  min-height: 100dvh;
-  max-height: 100dvh;
+  max-width: var(--content-max);
+  height: 100dvh;
   margin: 0 auto;
   background: url("/resources/ui/background.png") center/cover no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 0 1rem;
+  padding: 0 var(--border-width) var(--border-width) var(--border-width);
 }
 
 #pageHead { 
-  width: 100%;
+  width: var(--smart-width);
   text-align: center;
   display: flex;
   flex-direction: row;
@@ -57,9 +68,15 @@ body::after {
   justify-content: space-between;
 }
 
-#pageHead h1 { 
+#pageHead h1:first-of-type {
+  display: none;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 2rem;
+}
+
+#pageHead h1:last-of-type {
+  font-weight: 700;
+  font-size: 2rem;
 }
 
 #pageHead img {
@@ -70,15 +87,11 @@ body::after {
   -webkit-user-drag: none;
 }
 
-:root { 
-  --header-h: 95.96px;
-}
-
 #searchModal {
   display: none;
   position: absolute;
-  width: calc(100% - 2rem);
-  height: calc(100dvh - var(--header-h) - 1rem);
+  width: var(--smart-width);
+  height: var(--smart-height);
   top: var(--header-h);
   border-radius: 8px;
   background: rgba(255,255,255,1);
@@ -116,7 +129,7 @@ body::after {
 #searchBox {
   font-family: "Noto Serif", serif;
   color: #111;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 #searchResults {
@@ -133,7 +146,7 @@ body::after {
   padding: 0.4rem 0.6rem;
   font-family: "Noto Serif", serif;
   color: #111;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   cursor: pointer;
 }
 
@@ -146,9 +159,23 @@ body::after {
 
 #gdrive {
   max-height: 48px;
-  margin-right: 32px;
+  margin-right: 16px;
+  margin-top: 6px;
 }
 
+#reroll {
+  width: 56px;
+  height: auto;
+  margin-right: 16px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
+  transition: filter 0.3s ease, transform 0.05s ease;
+}
+
+#headerLeft,
 #headerRight {
   text-align: center;
   display: flex;
@@ -159,7 +186,7 @@ body::after {
 
 #info {
   max-height: 42px;
-  margin-left: 32px;
+  margin-left: 16px;
 }
 
 #search {
@@ -167,14 +194,23 @@ body::after {
   margin-left: 16px;
 }
 
+#subContainer {
+  flex: 1;
+  width: var(--smart-width);
+  min-height: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--border-width);
+}
+
 #artBox {
-  display: none;
+  flex: 1 1 0;
+  width: 100%;
   background: rgba(255,255,255,0.85);
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.4);
   padding: 1.5rem;
-  margin-bottom: 1rem;
-  width: 100%;
 }
 
 #artFrame {
@@ -182,6 +218,19 @@ body::after {
   aspect-ratio: 3 / 2;
   overflow: hidden;
   position: relative;
+}
+
+#entry {
+  flex: 1 1 0;
+  overflow-y: auto;
+  width: 100%;
+  background: rgba(255,255,255,0.85);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  line-height: 1.45;
+  font-size: 0.9rem;
+  word-wrap: break-word;
 }
 
 .rollImg {
@@ -196,37 +245,6 @@ body::after {
   background-color: #d4d4d4;
   opacity: 0;
   transition: opacity 0.9s ease;
-}
-
-#subContainer {
-  flex: 1;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#entry {
-  background: rgba(255,255,255,0.85);
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-  line-height: 1.45;
-  font-size: 0.95rem;
-  word-wrap: break-word;
-}
-
-#reroll {
-  width: 10dvh;              
-  min-width: 96px;
-  height: auto;
-  cursor: pointer;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  -webkit-user-drag: none;
-  transition: filter 0.3s ease, transform 0.05s ease;
-  margin: auto;
 }
 
 @media(hover:hover) and (pointer:fine) {
@@ -248,92 +266,107 @@ body::after {
   100% { transform: scale(0.90) rotate(360deg); }
 }
 
-@media(min-width:368px) {
-  :root { --header-h: 71.5625px; }
+/* Mobile Small Portrait / Desktop Extra Small / No ArtBox */
+@media(min-width:360px) and (max-height:524px) {
+  #subContainer { flex-direction: column; }
+  #artBox { display: none }
+  #entry { max-height: var(--smart-height) !important; }
 }
 
-@media(min-width:432px) {
-  :root { --header-h: 53px; }
+/* Mobile Medium */
+@media(min-width:360px) and (min-height:525px) {
+  :root { --content-max: 360px; --border-width: 1rem; }
+  #pageHead h1:first-of-type { display: none; }
+  #pageHead h1:last-of-type { display: block; }
+  #searchBox { font-size: 0.9rem; }
+  #searchResults li { font-size: 0.9rem; }
+  #entry { font-size: 0.9rem; }
+  #subContainer { flex-direction: column; }
+  #artBox, #entry{ width:100%; }
+  #artBox { flex: none; }
+  #entry { flex: 0 1 auto; max-height: var(--smart-height); }
 }
 
-@media(min-width:480px) {
-  :root { --header-h: 73.875px; }
+/* Mobile Large */
+@media(min-width:480px) and (min-height:525px) {
+  :root { --content-max: 480px; --border-width: 1rem; }
+  #pageHead h1:first-of-type { display: none; }
+  #pageHead h1:last-of-type { display: block; }
+  #searchBox { font-size: 0.9rem; }
+  #searchResults li { font-size: 0.9rem; }
+  #entry { font-size: 0.9rem; }
+  #subContainer { flex-direction: column; }
+  #artBox, #entry{ width:100%; }
+  #artBox { flex: none; }
+  #entry { flex: 0 1 auto; max-height: var(--smart-height); }
 }
 
-/* Mobile Small: No Borders, No artBox, Yes Dice */
-@media(max-width:479px) and (max-height:684px) {
-  #reroll { display: block; }
-}
-
-/* Mobile Small: No Borders, Yes artBox, No Dice */
-@media(max-width:479px) and (min-height:685px) {
-  #artBox { display: block; }
-  #reroll { display: none; }
-}
-
-@media(min-height:770px) {
-  #reroll { display: flex; }
-}
-
-/* Desktop Small Wide: No Borders, No artBox */
-@media(min-width:480px) and (max-height:799px) {
-  :root { --header-h: 53.56px; }
-  #pageHead h1 { font-size: 1.24rem; }
-  #entry { margin: auto 0; }
-}
-
-/* Desktop Small Wide: No Borders, No artBox */
-@media(min-width:540px) and (max-height:799px) {
-  :root { --header-h: 73.875px; }
-  #pageHead h1 { font-size: 1.72rem; }
-  #entry { margin: auto 0; }
-}
-
-/* Desktop Medium: Yes Borders, Yes artBox */
-@media(min-width:480px) and (min-height:800px) {
-  :root { --content-max: 480px; --header-h: 116.781px; }
-  body::before,
-  body::after {
-    content: "";
-    width: max(0px, calc((100vw - var(--content-max)) / 2));
-  }
-  #container { 
-    min-width: 0px;
-    max-width: 480px;
-    padding: 0 2rem;
-  }
-  #pageHead h1 { font-size: 1.81rem; }
-  #searchModal {
-    width: calc(100% - 4rem);
-    height: calc(100dvh - var(--header-h) - 2rem);
-  }
+/* Tablet Small */
+@media(min-width:720px) and (max-height:704px) {
+  :root { --content-max: 720px; --border-width: 2rem; }
+  #pageHead h1:first-of-type { display: block; }
+  #pageHead h1:last-of-type { display: none; }
   #searchBox { font-size: 1rem; }
   #searchResults li { font-size: 1rem; }
-  #artBox { display: block; }
   #entry { font-size: 1rem; }
-  #reroll { width: 12dvh; }
+  #subContainer { flex-direction: row; }
+  #entry, #artBox{ width: auto; min-width: 0px; flex: 1 1 0px; }
 }
 
-/* Desktop Large: Yes Borders, Yes artBox */
-@media(min-width:720px) and (min-height:910px) {
-  :root { --content-max: 720px; --header-h: 81.719px; }
-  #container {  max-width: 720px; }
-  #pageHead h1 { font-size: 1.9rem; }
-  #searchBox { font-size: 1.05rem; }
-  #searchResults li { font-size: 1.05rem; }
-  #artBox { display: block; }
-  #entry { font-size: 1.05rem; }
-  #reroll { width: 14dvh; }
+/* Desktop Medium */
+@media(min-width:720px) and (min-height:705px) {
+  :root { --content-max: 720px; --border-width: 2rem; }
+  #pageHead h1:first-of-type { display: block; }
+  #pageHead h1:last-of-type { display: none; }
+  #searchBox { font-size: 1rem; }
+  #searchResults li { font-size: 1rem; }
+  #entry { font-size: 1rem; }
+  #subContainer { flex-direction: column; }
+  #artBox, #entry{ width:100%; }
+  #artBox { flex: none; }
+  #entry { flex: 0 1 auto; max-height: var(--smart-height); }
 }
 
-/* Desktop Extra Large: Yes Borders, Yes artBox */
-@media(min-width:1080px) and (min-height:1160px) {
-  :root { --content-max: 1080px; --header-h: 85.88px; }
-  #container { max-width: 1080px; }
-  #pageHead h1 { font-size: 2rem; }
+/* Tablet Medium */
+@media(min-width:1080px) and (max-height:949px) {
+  :root { --content-max: 1080px; --border-width: 2rem; }
   #searchBox { font-size: 1.1rem; }
   #searchResults li { font-size: 1.1rem; }
-  #artBox { display: block; }
   #entry { font-size: 1.1rem; }
-  #reroll { width: 16dvh; }
+  #subContainer { flex-direction: row; }
+  #entry, #artBox{ width: auto; min-width: 0px; flex: 1 1 0px; }
+}
+
+/* Desktop Large */
+@media(min-width:1080px) and (min-height:950px) {
+  :root { --content-max: 1080px; --border-width: 2rem; }
+  #searchBox { font-size: 1.1rem; }
+  #searchResults li { font-size: 1.1rem; }
+  #entry { font-size: 1.1rem; }
+  #subContainer { flex-direction: column; }
+  #artBox, #entry{ width:100%; }
+  #artBox { flex: none; }
+  #entry { flex: 0 1 auto; max-height: var(--smart-height); }
+}
+
+/* Tablet Large */
+@media(min-width:1440px) and (max-height:1189px) {
+  :root { --content-max: 1440px; --border-width: 2rem; }
+  #searchBox { font-size: 1.2rem; }
+  #searchResults li { font-size: 1.2rem; }
+  #entry { font-size: 1.2rem; max-height: auto;}
+  #subContainer { flex-direction: row; }
+  #entry, #artBox{ width: auto; min-width: 0px; flex: 1 1 0px; }
+}
+
+/* Desktop Extra Large */
+@media(min-width:1440px) and (min-height:1190px) {
+  :root { --content-max: 1440px; --border-width: 2rem; }
+  #searchBox { font-size: 1.2rem; }
+  #searchResults li { font-size: 1.2rem; }
+  #entry { font-size: 1.2rem; }
+  #subContainer { flex-direction: column; }
+  #artBox, #entry{ width:100%; }
+  #artBox { flex: none; }
+  #entry { flex: 0 1 auto; max-height: var(--smart-height); }
 }
